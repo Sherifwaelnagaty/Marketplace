@@ -2,7 +2,6 @@
 <head>
     <title>Edit Info</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -28,7 +27,6 @@
                                     }
                                 }
                                 ?>
-                                <li>Free Shipping for all Order of 99 LE</li>
                             </ul>
                         </div>
                     </div>
@@ -37,10 +35,6 @@
                             <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">
                                 <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">English</a></li>
-                                </ul>
                             </div>
                             <div class="header__top__right__language">
                             <?php
@@ -210,7 +204,7 @@
                                 echo '<input type="text" name="Email" value='.$_SESSION["Email"].'>';
                                 if(isset($_POST["Submit"])){ 
                                     if(!filter_var($_POST["Email"],FILTER_VALIDATE_EMAIL,FILTER_FLAG_QUERY_REQUIRED)===FALSE){
-                                        $users->Edit_Customer($_POST["FirstName"],$_POST["LastName"],$_POST["Address"],$_POST["Email"],$_POST["MobileNumber"],$_POST["Password"],$_POST['Pic']);
+                                        $users->Edit_Customer($_POST["FirstName"],$_POST["LastName"],$_POST["Address"],$_POST["Email"],$_POST["MobileNumber"],$_POST["Password"],$_FILES['Pic']);
                                     }
                                 }
                                 ?>
@@ -235,14 +229,14 @@
                             $sql="SELECT * FROM users WHERE userID='".$_SESSION['ID']."'";
                             $result = mysqli_query($conn,$sql);       
                             While($row=mysqli_fetch_array($result)){?>
-                            <image id="profileImage" src="<?php echo $row['ProfilePicture'];}?>">
+                            <image id="profileImage" src="<?php echo $row['ProfilePicture'];}?>"class="img" width = "100"/>
                             <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
                             <br>
                             <input type="Submit" value="Submit" name="Submit">
                         </form>
     </section>
     <!-- Checkout Section End -->
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
 
  
