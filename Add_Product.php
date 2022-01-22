@@ -12,7 +12,9 @@ if(isset($_POST['OK'])){
 	$product_name=$_POST['product_name'];
 	$product_type=$_POST['product_type'];
 	$product_price=$_POST['product_price'];
-	$product_image=$_POST['product_image'];
+	$dir="Product/";
+  	$product_image=$dir.$_FILES['product_image']['name'];
+  	move_uploaded_file($_FILES['product_image']['tmp_name'],$product_image);	
 	if(empty($product_name))
 	{
 		echo"please enter product name";
@@ -31,11 +33,7 @@ if(isset($_POST['OK'])){
 	}
 	else
 	{
-		$sql="INSERT products WHERE 
-        product_name='".$product_name."',
-        product_type='".$product_type."',
-        product_price='".$product_price."',
-        product_image= img/'".$product_image."'";
+	$sql="INSERT INTO `products`(`product_name`, `product_type`, `product_price`, `product_image`) VALUES ('$product_name','$product_type','$product_price','$product_image')";
 	$result=mysqli_query($conn,$sql);
 	if($result){
 		header("Location:shopping-cart.php");
@@ -127,6 +125,7 @@ a {
     <h1>Add Product</h1>
     <hr>
 
+   
     <label for="product_name"><b>Product name</b></label>
     <input type="text" name="product_name" id="product_name">
 
@@ -139,8 +138,7 @@ a {
 	<label for="product_image"><b>product_image</b></label>
     <input type="file" name="product_image" id="product_image">
     <hr>
-
-    <button type="submit" class="registerbtn" name="OK">Update</button>
+    <button type="submit" class="registerbtn">ADD PRODUCT</button>
   </div>
   
   
