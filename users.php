@@ -63,7 +63,7 @@ class users
 			
 		if($this->db->conn->query($sql)===TRUE){
 		}else{
-			die("Error Found");
+			Die("Invalid Email or Password");	
 		}
 
 	}
@@ -85,7 +85,9 @@ class users
 					$_SESSION["Address"]=$Address;
 					$_SESSION["Email"]=$Email;
 					$_SESSION["MobileNumber"]=$MobileNumber;
-					$_SESSION["Password"]=$Password;	
+					$_SESSION["Password"]=$Password;
+					$_SESSION["Pic"]=$Profile_Picture;	
+
 				}
 	}
 	public function Delete_user($ID)
